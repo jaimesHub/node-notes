@@ -48,13 +48,40 @@
     + Event loop
     + On browser: Hit `127.0.0.1:8000` to see its response
     + Analyze what happened
-        - We created our server, using createServer and passed in a callback function that is executed each time that a new request hits the server, and then we started listening for incoming requests on the local host IP, and then on port 8000. 
+        - We created our server, using `createServer` and passed in` a callback function` that is executed each time that a new request hits the server, and then we started listening for incoming requests on the local host IP, and then on port 8000. 
         - Once we had all this running, we actually did the request by hitting that url. So then, under the hood of NodeJS `an event was fired`, this event then made it so this callback function was called.
 - Note:
     + `Part 1`: Each time that a new request hits our server, this callback function (`calback_func`) here will get called, and the callback function will have access to the request object (`req`) which holds all kinds of stuff like the request `url`, and a bunch of other stuff. On the other hand, this response object (`res`) here gives us a lot of tools basically for dealing with the response, so for sending out the response.
     + `Part 2`: After creating a Server instance, it listens at `127.0.0.1:8000`
 
 ## Routing
+- Routing basically means implementing different actions for different URLs.
+- First step: be able to analyze the URL => using `URL` module
+    ```
+    const url = require("url");
+    // ...
+    console.log(req.url);
+    ```
+- Implement the routing
+    + Test with "/" or "/overview"
+    + Test with "/product"
+    + Test with any words such as "/random123ddd"
+    + Add `status code` & `header`
+- Note that: 
+    + With `Content-type`, if you pass `text/html` then your response will be HTML.
+
+## Building a (Very) Simple API
+- `Concept of API` is a service from which we can request some data
+so in this case, the data that the user wants to request is data about the products that we are offering in this node farm, so in this project.
+- Check `/api`
+- Using global variable `__dirname` to read a file
+- Telling the browser that we're sending back JSON
+    ```
+    {
+        "Content-type": "application/json",
+    }
+    ```
+- Problem: Each time someone hits `/api` requests on our server, `data.json` will be read once and once again => we need to handle it read just one time using `readFileSync`
 # Using Modules 2: Our Own Modules
 
 # Using Module 3: 3rd Party Modules
