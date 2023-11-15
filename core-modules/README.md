@@ -82,6 +82,23 @@ so in this case, the data that the user wants to request is data about the produ
     }
     ```
 - Problem: Each time someone hits `/api` requests on our server, `data.json` will be read once and once again => we need to handle it read just one time using `readFileSync`
+
+## HTML Template
+### Building the Templates
+- template-overview.html
+- template-product.html
+- template-card.html
+### Filling the Templates
+- Loading templates
+- Loading data
+- replaceTemplate function
+- OVERVIEW PAGE
+- NOT FOUND PAGE
+
+## Parsing variables from URL
+- `const url = require("url");`
+- `url.parse(req.url, true)`
+
 # Using Modules 2: Our Own Modules
 
 # Using Module 3: 3rd Party Modules
