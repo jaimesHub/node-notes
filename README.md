@@ -8,4 +8,6 @@
     4. HTML Templating
         - Building the Template
         - Filling the Templates
-2. 
+2. our-own-modules
+    - The difference between `regular dependencies` and `development dependencies`
+    - Install them either `locally` or `globally` also install them in both places.

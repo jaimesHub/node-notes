@@ -57,7 +57,7 @@ const replaceTemplate = (template, product) => {
 
   return output;
 };
-// Loading templates
+
 const templateOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
   "utf-8"
@@ -71,17 +71,13 @@ const templateProduct = fs.readFileSync(
   "utf-8"
 );
 
-// Loading data
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObj = JSON.parse(data);
 
-// Initializing a Server instance
 const server = http.createServer((req, res) => {
   const { query, pathname } = url.parse(req.url, true);
 
-  // const pathName = req.url;
   if (pathname === "/" || pathname === "/overview") {
-    // OVERVIEW PAGE
     res.writeHead(200, { "Content-type": "text/html" });
     const cardsHtml = dataObj
       .map((el) => replaceTemplate(templateCard, el))
@@ -89,24 +85,11 @@ const server = http.createServer((req, res) => {
     const output = templateOverview.replace(/{%PRODUCT_CARDS%}/g, cardsHtml);
     res.end(output);
   } else if (pathname === "/product") {
-    // PRODUCT PAGE
-    // console.log(query, query.id);
     res.writeHead(200, { "Content-type": "text/html" });
     const product = dataObj[query.id];
     const output = replaceTemplate(templateProduct, product);
     res.end(output);
   } else if (pathname === "/api") {
-    // we should not use here because each time we send request, 
-    // fs.readFile will block to get data then continue executing other commands.
-    // fs.readFile(`${__dirname}/dev-data/data.json`, "utf-8", (err, data) => {
-    //   const productData = JSON.parse(data);
-    //   // console.log(productData);
-    //   res.writeHead(200, {
-    //     "Content-type": "application/json",
-    //   });
-    //   res.end(data);
-    // });
-
     res.writeHead(200, {
       "Content-type": "application/json",
     });
