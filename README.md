@@ -11,3 +11,7 @@
 2. our-own-modules
     - The difference between `regular dependencies` and `development dependencies`
     - Install them either `locally` or `globally` also install them in both places.
+
+3. third-party-modules
+    - require/include `third-party-modules` from the NPM registry
+    - working with `npm` packages: versioning, updating, deleting packages, package.json, package-lock.json
